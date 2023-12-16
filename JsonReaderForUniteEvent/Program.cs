@@ -1,0 +1,26 @@
+using JsonReaderForUniteEvent.EventBaseData;
+using System.Windows.Forms;
+
+
+namespace JsonReaderForUniteEvent
+{
+    internal static class Program
+    {
+
+        /// <summary>
+        ///  The main entry point for the application.
+        /// </summary>
+        [STAThread]
+        static void Main()
+        {
+            EventDataSingleton.GetInstanciate();
+
+
+            // To customize application configuration such as set high DPI settings or default font,
+            // see https://aka.ms/applicationconfiguration.
+            ApplicationConfiguration.Initialize();
+            Application.Run(new UniteJsonEditer());
+
+        }
+    }
+}

@@ -1,0 +1,17 @@
+{
+  "helpJsonElements": [
+    {
+      "code": 707,
+      "helpText": "This is the help text for code 707."
+    },
+    {
+      "code": 241,
+      "helpText": "This is the help text for code 241."
+    },
+    {
+      "code": 101,
+      "helpText": "This is the help text for code 101."
+    }
+    // 他の要素も追加可能
+  ]
+}
