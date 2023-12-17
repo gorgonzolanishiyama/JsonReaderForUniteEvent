@@ -69,7 +69,6 @@ namespace JsonReaderForUniteEvent.EventCommandSystem
             //画面更新
             RefreshGrid();
             
-            this.AcceptButton = ButtonOK;
         }
 
         private void EventCommandForm_Load(object sender, EventArgs e)
