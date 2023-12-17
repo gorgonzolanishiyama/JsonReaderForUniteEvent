@@ -1,5 +1,6 @@
 ﻿using JsonReaderForUniteEvent.Data;
 using JsonReaderForUniteEvent.EventCommandSystem;
+using JsonReaderForUniteEvent.HelpSystem;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -17,10 +18,13 @@ namespace JsonReaderForUniteEvent.FavoriteSystem
         /// 保存設定(保存パス)
         /// </summary>
         public string folderPath { set; get; } = string.Empty;
+
+        string defaultFileName = "FavoriteEventDefault.json";
+
         /// <summary>
         /// 保存設定(保存ファイル名)
         /// </summary>
-        string appendFilePath = "FavoritEvent.json";
+        string appendFileName = "FavoriteEvent.json";
 
         /// <summary>
         /// データをロードする。
@@ -30,11 +34,19 @@ namespace JsonReaderForUniteEvent.FavoriteSystem
             try
             {
                 favoriteEvents.Clear();
+                string jsonData = File.ReadAllText(folderPath + "\\" + defaultFileName);
+                FavoriteEventsCommand? favoriteEventsData = JsonConvert.DeserializeObject<FavoriteEventsCommand>(jsonData);
+                AddData(favoriteEventsData);
                 string[] jsonFiles = Directory.GetFiles(folderPath, "*.json");
+
                 foreach (string jsonFile in jsonFiles)
                 {
-                    string jsonData = File.ReadAllText(jsonFile);
-                    FavoriteEventsCommand? favoriteEventsData = JsonConvert.DeserializeObject<FavoriteEventsCommand>(jsonData);
+                    if(jsonFile == defaultFileName)
+                    {
+                        return;
+                    }
+                    jsonData = File.ReadAllText(jsonFile);
+                    favoriteEventsData = JsonConvert.DeserializeObject<FavoriteEventsCommand>(jsonData);
                     AddData(favoriteEventsData);
                 }
             }
@@ -54,7 +66,7 @@ namespace JsonReaderForUniteEvent.FavoriteSystem
             {
                 favoriteEvents.Add(description, eventCommand);
                 string jsonData = JsonConvert.SerializeObject(favoriteEvents);
-                using (StreamWriter writer = new StreamWriter(folderPath + "\\" + appendFilePath))
+                using (StreamWriter writer = new StreamWriter(folderPath + "\\" + appendFileName))
                 {
                     writer.Write(jsonData);
                 }

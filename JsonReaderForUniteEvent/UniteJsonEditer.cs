@@ -38,8 +38,8 @@ namespace JsonReaderForUniteEvent
         private void UniteJsonEditer_Load(object sender, EventArgs e)
         {
             string path = @"Data\EventHelp";
-            HelpForEventCommandsSingleton.folderPath = path;
-            HelpForEventCommandsSingleton.LoadHelpForEventCommands(); // ファイル名は適切に変更
+            HelpForEventCommandsSingleton.GetInstance().folderPath = path;
+            HelpForEventCommandsSingleton.GetInstance().LoadHelpForEventCommands(); // ファイル名は適切に変更
             path = @"Data\FavoriteList";
             FavoriteEventCommandBaseSigleton.GetInstance().folderPath = path;
             FavoriteEventCommandBaseSigleton.GetInstance().LoadFavoriteEventData();
@@ -365,6 +365,10 @@ namespace JsonReaderForUniteEvent
             if (e.ColumnIndex == 1 || e.ColumnIndex == 2) // 二列目と三列目
             {
                 DataGridViewCell cell = EventCommandDataGrid[e.ColumnIndex, e.RowIndex];
+                if (e.FormattedValue == null)
+                {
+                    return;
+                }
                 string proposedValue = e.FormattedValue.ToString();
 
                 // 数値に変換できるか確認

@@ -17,14 +17,22 @@ namespace JsonReaderForUniteEvent.FavoriteSystem
     /// </summary>
     internal class FavoriteEventCommandBaseSigleton
     {
-        private static FavoriteEventDataBase instance = new FavoriteEventDataBase();
+        private static FavoriteEventDataBase instance = null;
         private static readonly object lockObject = new object();
 
         public static FavoriteEventDataBase GetInstance()
         {
+            // インスタンスがまだ作成されていない場合、ロック内で作成する
             if (instance == null)
             {
-                instance = new FavoriteEventDataBase();
+                lock (lockObject)
+                {
+                    // ロック内で再度チェックして二重作成を防ぐ
+                    if (instance == null)
+                    {
+                        instance = new FavoriteEventDataBase();
+                    }
+                }
             }
             return instance;
         }

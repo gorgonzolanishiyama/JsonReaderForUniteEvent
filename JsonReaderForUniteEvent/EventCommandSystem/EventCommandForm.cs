@@ -64,7 +64,7 @@ namespace JsonReaderForUniteEvent.EventCommandSystem
             RouteDataGrid.Columns.Add(columnRoute);
 
             //Helpの設定
-            helpText.Text = HelpForEventCommandsSingleton.GetData(eventCommand.code);
+            helpText.Text = HelpForEventCommandsSingleton.GetInstance().GetData(eventCommand.code);
 
             //画面更新
             RefreshGrid();
@@ -225,7 +225,7 @@ namespace JsonReaderForUniteEvent.EventCommandSystem
         /// <param name="e"></param>
         private void ButtonHelpFileUpdate_Click(object sender, EventArgs e)
         {
-            HelpForEventCommandsSingleton.SaveHelpForEventCommands(eventCommandTemp.code, helpText.Text);
+            HelpForEventCommandsSingleton.GetInstance().SaveHelpForEventCommands(eventCommandTemp.code, helpText.Text);
         }
 
         /// <summary>

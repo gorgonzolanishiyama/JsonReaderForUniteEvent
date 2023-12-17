@@ -11,7 +11,7 @@ namespace JsonReaderForUniteEvent.EventBaseData
     /// </summary>
     internal class EventDataSingleton
     {
-        private static EventData? baseData;
+        private static EventData? baseData ;
         private static readonly object lockObject = new object();
 
         private EventDataSingleton() { }
