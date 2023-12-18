@@ -1,17 +1,1 @@
-{
-  "helpJsonElements": [
-    {
-      "code": 707,
-      "helpText": "This is the help text for code 707."
-    },
-    {
-      "code": 241,
-      "helpText": "This is the help text for code 241."
-    },
-    {
-      "code": 101,
-      "helpText": "This is the help text for code 101."
-    }
-    // 他の要素も追加可能
-  ]
-}
+{"helpJsonElements":[{"code":707,"helpText":"This is the help text for code 707."},{"code":241,"helpText":"code 241:BGM演奏\nファイル名(string)\n音量(int)\nピッチ(int)\n位相(int)"},{"code":101,"helpText":"This is the help text for code 101."},{"code":230,"helpText":"code 230: ウェイト\nウェイト時間:int"},{"code":401,"helpText":"code 401 : 文字表示\n文章:string"}]}
