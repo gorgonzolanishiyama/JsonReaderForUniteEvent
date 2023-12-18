@@ -23,6 +23,7 @@ namespace JsonReaderForUniteEvent
     {
         //コピー用の情報ストック
         EventCommandData eventCommandForCopy = new EventCommandData();
+        string fileName = string.Empty;
 
         public UniteJsonEditer()
         {
@@ -57,6 +58,7 @@ namespace JsonReaderForUniteEvent
             {
                 saveFileDialog.Filter = "Json ファイル|*.json";
                 saveFileDialog.Title = "ファイルを保存";
+                saveFileDialog.FileName = fileName;
 
                 // ダイアログを表示し、OK ボタンが押された場合の処理
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
@@ -89,6 +91,7 @@ namespace JsonReaderForUniteEvent
                             EventDataSingleton.SetInstance(loadEventData);
                             TextBoxFileName.Text = Path.GetFileName(openFileDialog.FileName);
                             UpdateData();
+                            fileName = Path.GetFileNameWithoutExtension(openFileDialog.FileName);
                         }
                     }
                     catch (Exception ex)
